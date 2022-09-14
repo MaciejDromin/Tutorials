@@ -1,0 +1,34 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
+	id 'groovy'
+}
+
+group = 'pl.mlisowski'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.spockframework', name: 'spock-spring', version: '2.2-M1-groovy-3.0'
+	testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.2-M1-groovy-3.0'
+	implementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner:3.1.3'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
