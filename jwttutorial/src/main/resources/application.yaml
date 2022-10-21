@@ -15,8 +15,10 @@ spring:
     log-request-details: true
 
 jwt:
-  expiration: 3600000
+  expiration: 60000
   secret: mySecret
+  refreshToken:
+    expiration: 120
 
 logging:
   level:

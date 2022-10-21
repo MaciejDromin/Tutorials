@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.mlisowski.jwttutorial.security.domain.RefreshToken;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -44,6 +45,9 @@ public class JwtUser implements UserDetails {
     @Column
     @Builder.Default
     private boolean enabled = false;
+
+    @OneToOne(mappedBy = "user")
+    private RefreshToken refreshToken;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
