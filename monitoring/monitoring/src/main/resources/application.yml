@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: Monitoring
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http: true
+  tags:
+    application: task-manager
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus", "metrics" ]
