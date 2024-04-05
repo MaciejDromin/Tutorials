@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'io.gatling.gradle' version '3.9.5.1'
+}
+
+group = 'com.soitio'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+gatling {
+    gatlingVersion = '3.10.5'
+    logLevel = 'DEBUG'
+    logHttp = 'NONE'
+    enterprise {
+
+    }
+}
+
+dependencies {
+    gatlingImplementation "com.google.guava:guava:${guava_version}"
+    gatlingImplementation "org.apache.commons:commons-lang3:${commons_version}"
+    gatlingCompileOnly "org.projectlombok:lombok:${lombok_version}"
+    gatlingAnnotationProcessor "org.projectlombok:lombok:${lombok_version}"
+}
