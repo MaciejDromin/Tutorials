@@ -1,0 +1,30 @@
+services:
+  be:
+    image: "monitoring:latest"
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - monitoring-demo
+  prometheus:
+    image: "prom/prometheus"
+    restart: unless-stopped
+    networks:
+      - monitoring-demo
+    ports:
+      - "9090:9090"
+    volumes:
+      - "$PWD/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+  grafana:
+    image: "grafana/grafana-enterprise"
+    restart: unless-stopped
+    user: "$UID:$GID"
+    networks:
+      - monitoring-demo
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/opt/grafana:/var/lib/grafana"
+
+networks:
+  monitoring-demo:
