@@ -2,6 +2,8 @@ package com.soitio.monitoring.application;
 
 import java.util.UUID;
 import java.util.concurrent.ArrayBlockingQueue;
+
+import com.soitio.monitoring.domain.ExampleObject;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,4 +27,7 @@ public class MonitoringService {
         return "queue";
     }
 
+    public ExampleObject processExample(ExampleObject object) {
+        return hiddenService.processExample(object);
+    }
 }
